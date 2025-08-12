@@ -1,178 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0a0a0a" />
-  <title>OILGAS — App Home</title>
+  <title>OILGAS – Καλωσόρισες</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg:#0a0a0a; /* deep charcoal */
-      --fg:#f5f5f5; /* soft white */
-      --muted:#bdbdbd;
-      --accent:#e5e5e5; /* light for borders */
-      --card:#121212;
-      --ring:rgba(255,255,255,.2);
+    :root{
+      --blue:#1e3a8a;         /* φόντο κάτω μέρους */
+      --bg:#d9d9d9;           /* φόντο σελίδας */
+      --text:#ffffff;         /* βασικό κείμενο */
+      --muted:#cfd8e3;        /* δευτερεύον κείμενο */
+      --btn-bg:#ffffff;
+      --btn-text:#1e3a8a;
     }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", system-ui, sans-serif;
-      color: var(--fg);
-      background: var(--bg);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
     }
-
-    /* Top bar */
-    .topbar {
-      position: fixed; inset: 0 0 auto 0; height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 20px; background: linear-gradient(180deg, rgba(0,0,0,.6), rgba(0,0,0,0));
-      z-index: 10;
+    .hero{
+      flex:1;
+      background:var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
     }
-    .brand { font-size: 18px; letter-spacing: .12em; text-transform: uppercase; color: var(--fg); opacity: .95; }
-    .brand strong { font-weight: 800; }
-
-    /* Hero */
-    .hero {
-      position: relative; height: 48vh; min-height: 320px; max-height: 640px; overflow: hidden; border-bottom: 1px solid #1c1c1c;
+    .hero img{
+      width:100%;
+      height:auto;
+      max-height:100%;
+      object-fit:contain;
     }
-    .hero img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) brightness(.85) saturate(1.05); }
-    .hero::after {
-      content: ""; position: absolute; inset: 0; background:
-        linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.5) 55%, rgba(10,10,10,1) 100%);
+    .content{
+      background:var(--blue);
+      border-top-left-radius:20px;
+      border-top-right-radius:20px;
+      padding:20px;
+      text-align:center;
+      color:var(--text);
     }
-    .hero-caption {
-      position: absolute; inset: auto 0 20px 0; padding: 0 20px; text-align: center;
+    h1{
+      font-size:22px;
+      font-weight:800;
     }
-    .hero h1 { margin: 0 0 6px; font-size: clamp(20px, 4vw, 34px); font-weight: 800; letter-spacing: .02em; }
-    .hero p { margin: 0; color: var(--muted); font-size: clamp(12px, 2.4vw, 16px); }
-
-    /* Grid */
-    .container { max-width: 1120px; margin: -48px auto 48px; padding: 0 20px; position: relative; z-index: 2; }
-    .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
-    @media (min-width: 640px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-
-    a.card { text-decoration: none; color: inherit; }
-    .card {
-      display: flex; flex-direction: column; justify-content: space-between; gap: 12px;
-      background: linear-gradient(180deg, #111, #0f0f0f);
-      border: 1px solid #1f1f1f; border-radius: 20px; padding: 20px; min-height: 140px;
-      box-shadow: 0 10px 20px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
-      position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    p{
+      margin-top:10px;
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.4;
     }
-    .card:hover { transform: translateY(-2px); border-color: #2a2a2a; box-shadow: 0 14px 28px rgba(0,0,0,.45); }
-    .card:active { transform: translateY(0); }
-
-    .card .row { display: flex; align-items: center; gap: 12px; }
-    .card h3 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: .02em; }
-    .card p { margin: 0; color: var(--muted); font-size: 14px; }
-
-    .icon {
-      width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; background: #171717; border: 1px solid #222;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    .btn{
+      display:block;
+      width:100%;
+      text-align:center;
+      padding:14px;
+      margin-top:20px;
+      border-radius:12px;
+      background:var(--btn-bg);
+      color:var(--btn-text);
+      font-weight:700;
+      text-decoration:none;
+      font-size:16px;
     }
-    .chevron { margin-left: auto; opacity: .6; }
-
-    /* subtle focus ring */
-    .card:focus-visible { outline: none; box-shadow: 0 0 0 4px var(--ring); }
-
-    /* Footer */
-    footer { margin: 32px 0 40px; text-align: center; color: #8a8a8a; font-size: 12px; }
-    .fine { opacity: .8; }
   </style>
 </head>
 <body>
-  <header class="topbar" role="banner">
-    <div class="brand" aria-label="OILGAS">OIL<strong>GAS</strong></div>
-  </header>
+  <div class="hero">
+    <img src="https://static.wixstatic.com/media/6ee442_d9ea9ae5cfd247f3b4f071958b93fc89~mv2.png" alt="Αυτοκίνητο" />
+  </div>
 
-  <!-- HERO: replace images/hero.jpg with your own photo -->
-  <section class="hero" role="img" aria-label="Premium lubricants and trusted mechanics">
-    <img src="images/hero.jpg" alt="OILGAS vehicle and workshop collage" />
-    <div class="hero-caption">
-      <h1>Premium Oil • Χωρίς Μεσάζοντες</h1>
-      <p>Βρες αξιόπιστο μηχανικό, κάνε κράτηση και κέρδισε δώρα.</p>
-    </div>
-  </section>
-
-  <main class="container" role="main">
-    <div class="grid">
-      <!-- Link 1: Website -->
-      <a class="card" href="https://oilgas-lubricants.com" target="_self" rel="noopener">
-        <div class="row">
-          <div class="icon" aria-hidden="true">
-            <!-- globe icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9Z" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M3 12h18M12 3c3 3.5 3 14 0 18M12 3c-3 3.5-3 14 0 18" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <h3>Ιστότοπος OILGAS</h3>
-          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <p>Κατάλογος προϊόντων, e‑shop, νέα και προσφορές.</p>
-      </a>
-
-      <!-- Link 2: Find STO (workshop) -->
-      <a class="card" href="https://oilgas.gr/booking" target="_self" rel="noopener">
-        <div class="row">
-          <div class="icon" aria-hidden="true">
-            <!-- wrench icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M21 3a6 6 0 0 1-7.76 7.76L6.5 17.5a2.12 2.12 0 1 1-3-3l6.74-6.74A6 6 0 0 1 21 3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="6" cy="18" r="2" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <h3>Αναζήτηση Σ.Τ.Ο.</h3>
-          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <p>Βρες κοντινό συνεργείο, κάνε κράτηση και οδήγησε ως εκεί.</p>
-      </a>
-
-      <!-- Link 3: Gift filter -->
-      <a class="card" href="https://oilgas.gr/gift" target="_self" rel="noopener">
-        <div class="row">
-          <div class="icon" aria-hidden="true">
-            <!-- gift icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7m16 0H4m16 0V9a2 2 0 0 0-2-2h-5m-9 5V9a2 2 0 0 1 2-2h5m0 0S9 4 7.5 4 5 5.343 5 7s1.343 3 3 3m6-3s2-3 3.5-3S19 5.343 19 7s-1.343 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Δώρο: Φίλτρο</h3>
-          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <p>Αγόρασε λάδι και πάρε φίλτρο δωρεάν — δες τους όρους.</p>
-      </a>
-
-      <!-- Link 4: Invite a friend -->
-      <a class="card" href="https://oilgas.gr/invite" target="_self" rel="noopener">
-        <div class="row">
-          <div class="icon" aria-hidden="true">
-            <!-- users icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87M18 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>Προσκάλεσε φίλο</h3>
-          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <p>Μοιράσου την εφαρμογή και κέρδισε πόντους ανταμοιβής.</p>
-      </a>
-    </div>
-
-    <footer>
-      <div class="fine">© <span id="y"></span> OILGAS. All rights reserved.</div>
-    </footer>
-  </main>
-
-  <script>
-    // autopopulate year
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <div class="content">
+    <h1>Ας ξεκινήσουμε μια νέα εμπειρία</h1>
+    <p>
+      Βρες αξιόπιστο μηχανικό &amp; συνεργείο, κλείσε ραντεβού και απόκτησε
+      premium λιπαντικά OILGAS σε χαμηλές τιμές — χωρίς μεσάζοντες.
+    </p>
+    <a class="btn" href="#">Ξεκινάμε</a>
+  </div>
 </body>
 </html>
